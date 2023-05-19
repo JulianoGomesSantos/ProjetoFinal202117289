@@ -1,9 +1,62 @@
 .container {
   width: 120px;
   height: 100vh;
-  background-color: rgba(67, 66, 68, 0.178);
+  background-color: rgba(0, 0, 0, 0.019);
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 0px 15px 15px 0px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.plus-circle-icon {
+  color: rgb(201, 201, 201);
+  height: 50px;
+  width: 50px;
+}
+
+.plus-circle-icon:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.log-out-icon {
+  color: rgb(201, 201, 201);
+  height: 40px;
+  width: 40px;
+}
+
+.log-out-icon:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.person-icon {
+  color: rgb(201, 201, 201);
+  height: 50px;
+  width: 50px;
+}
+
+.person-icon:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+
+  transition: all 0.2s ease-in-out;
 }

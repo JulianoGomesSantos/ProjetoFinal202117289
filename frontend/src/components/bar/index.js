@@ -5,15 +5,9 @@ import { CgLogOut } from "react-icons/cg";
 export const Navbar = () => {
   return (
     <div className="container">
-      <div>
-        <BsPersonCircle />
-      </div>
-      <div>
-        <AiOutlinePlusCircle />
-      </div>
-      <div>
-        <CgLogOut />
-      </div>
+      <BsPersonCircle className="person-icon" />
+      <AiOutlinePlusCircle className="plus-circle-icon" />
+      <CgLogOut className="log-out-icon" />
     </div>
   );
 };
