@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
 .container {
-  width: 120px;
+  width: 100px;
   height: 100vh;
   background-color: rgba(31, 31, 31, 0.719);
   position: absolute;
@@ -21,6 +23,7 @@
   color: rgb(201, 201, 201);
   height: 40px;
   width: 40px;
+  left: 40px;
 }
 
 .plus-circle-icon:hover {
@@ -60,4 +63,127 @@
   width: 60px;
 
   transition: all 0.2s ease-in-out;
+}
+
+.modal {
+  outline: none;
+  position: absolute;
+  top: 40px;
+  left: 18px;
+  bottom: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+}
+.modal > div {
+  width: 400px;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+
+  text-align: start;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 100px;
+  right: 0;
+  bottom: 0;
+  backdrop-filter: blur(5px);
+
+  background-color: rgba(0, 0, 0, 0.209);
+}
+
+.ReactModal__Overlay {
+  opacity: 90;
+  transition: opacity 600ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.arrow-box {
+  width: 50px;
+  height: 50px;
+  transform: rotate(45deg);
+
+  position: absolute;
+
+  top: 47.5vh;
+  left: 95px;
+  border-radius: 7px;
+
+  z-index: 9999;
+
+  background-color: rgb(254, 254, 254);
+}
+
+.modal > div > form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 370px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.modal > div > form > input {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  padding-left: 10px;
+  margin-bottom: 20px;
+
+  outline: none;
+}
+
+.modal > div > form > input:focus {
+  border-bottom: 2px solid rgb(121, 135, 213);
+}
+
+.modal > div > form > button {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(121, 135, 213);
+  color: rgb(255, 255, 255);
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+
+  outline: none;
+}
+
+.modal > div > form > button:hover {
+  background-color: rgb(101, 115, 193);
+}
+
+.modal > div > .texts {
+  font-family: "Roboto", sans-serif;
+}
+
+.modal > div > .texts > h2 {
+  font-family: "Roboto", sans-serif;
+  margin-bottom: 20px;
+}
+
+.modal > div > .texts > h3 {
+  font-family: "Roboto", sans-serif;
+  color: rgb(118, 118, 118);
 }
