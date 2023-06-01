@@ -3,15 +3,18 @@ import "../css/home.css";
 import { Card } from "../components/card";
 
 function Home() {
-  const cards = JSON.parse(localStorage.getItem("localCards"));
+  const cards = JSON.parse(localStorage.getItem("localCards")) || [];
 
   return (
     <div className="App">
       <Navbar />
       <div className="home">
         <div className="home_container">
-          <p>Task List</p>
           <div className="card_container">
+            <span>
+              <p>Task List</p>
+              <p>Priority</p>
+            </span>
             {cards.map((item) => (
               <Card
                 key={item.id}
@@ -19,6 +22,7 @@ function Home() {
                 task={item.task}
                 description={item.description}
                 completed={item.completed}
+                priority={item.priority}
               />
             ))}
           </div>

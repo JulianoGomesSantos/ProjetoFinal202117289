@@ -9,11 +9,11 @@ export const Navbar = () => {
   const [modal, setModal] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("");
+  const [priority, setPriority] = useState("low");
 
   const currentCards = JSON.parse(localStorage.getItem("localCards"));
 
-  const lastId = currentCards[currentCards.length - 1].id;
+  const lastId = currentCards ? currentCards[currentCards.length - 1].id : 0;
 
   const submit = () => {
     if (lastId >= 1) {
@@ -22,6 +22,7 @@ export const Navbar = () => {
         task: name,
         completed: false,
         description: description,
+        priority: priority,
       };
 
       currentCards.push(newTask);
@@ -38,6 +39,7 @@ export const Navbar = () => {
           task: name,
           completed: false,
           description: description,
+          priority: priority,
         },
       ];
 
@@ -86,12 +88,19 @@ export const Navbar = () => {
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
               />
-              <input
-                type="text"
-                placeholder="Priority"
-                onChange={(e) => setPriority(e.target.value)}
-                value={priority}
-              />
+              <div className="priority-container">
+                <label>Priority</label>
+                <select
+                  value={priority}
+                  onChange={(e) => setPriority(e.target.value)}
+                >
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option selected value="low">
+                    Low
+                  </option>
+                </select>
+              </div>
 
               <button type="submit" onClick={() => submit()}>
                 Create task
