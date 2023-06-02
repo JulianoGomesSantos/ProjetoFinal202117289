@@ -8,6 +8,8 @@ const createTaskRepository = async (params) => {
   const { taskName, description, priority, userId, updatedAt, createdAt } =
     params;
 
+  console.log(params);
+
   const taskCreated = await prisma.task.create({
     data: {
       task_name: taskName,

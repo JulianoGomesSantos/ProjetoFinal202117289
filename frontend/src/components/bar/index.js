@@ -2,8 +2,9 @@ import './bar.css';
 import { BsPersonCircle } from 'react-icons/bs';
 import { AiOutlinePlusCircle, AiOutlineClose } from 'react-icons/ai';
 import { CgLogOut } from 'react-icons/cg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import api from '../../config/api';
 
 export const Navbar = () => {
   const [modal, setModal] = useState(false);
@@ -11,45 +12,28 @@ export const Navbar = () => {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('low');
 
-  const currentCards = JSON.parse(localStorage.getItem('localCards'));
-
-  const lastId = currentCards ? currentCards[currentCards.length - 1].id : 0;
-
-  const submit = () => {
-    if (lastId >= 1) {
-      const newTask = {
-        id: lastId + 1,
-        task: name,
-        completed: false,
-        description: description,
-        priority: priority,
-      };
-
-      currentCards.push(newTask);
-
-      localStorage.setItem('localCards', JSON.stringify(currentCards));
-
-      alert('Task created successfully!');
-
-      window.location.reload();
-    } else {
-      const newTask = [
-        {
-          id: 1,
-          task: name,
-          completed: false,
-          description: description,
-          priority: priority,
-        },
-      ];
-
-      localStorage.setItem('localCards', JSON.stringify(newTask));
-
-      alert('Task created successfully!');
-
-      window.location.reload();
-    }
+  const newCard = {
+    taskName: name,
+    completed: false,
+    description: description,
+    priority: priority,
+    userId: 1,
   };
+
+  function insertCards() {
+    api
+      .post('/task/create', newCard)
+      .then(() => {
+        alert('Task created successfully!');
+        return;
+      })
+      .catch((err) => {
+        console.error('ops! ocorreu um erro' + err);
+        alert(err);
+
+        return err;
+      });
+  }
 
   if (modal) {
     return (
@@ -102,7 +86,7 @@ export const Navbar = () => {
                 </select>
               </div>
 
-              <button type="submit" onClick={() => submit()}>
+              <button type="submit" onClick={() => insertCards()}>
                 Create task
               </button>
             </form>

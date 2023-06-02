@@ -1,9 +1,17 @@
 import { Navbar } from '../components/bar';
 import '../css/home.css';
 import { Card } from '../components/card';
+import api from '../config/api';
+import { useEffect, useState } from 'react';
 
 function Home() {
-  const cards = JSON.parse(localStorage.getItem('localCards')) || [];
+  const [cardList, setCardList] = useState([]);
+
+  useEffect(() => {
+    api.get('/task/list/1').then((res) => {
+      setCardList(res.data);
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -15,11 +23,11 @@ function Home() {
               <p>Task List</p>
               <p>Priority</p>
             </span>
-            {cards.map((item) => (
+            {cardList.map((item) => (
               <Card
                 key={item.id}
                 id={item.id}
-                task={item.task}
+                task={item.task_name}
                 description={item.description}
                 completed={item.completed}
                 priority={item.priority}
