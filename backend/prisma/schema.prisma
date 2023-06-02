@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:my-secret-pw@localhost:3306/mydatabase"
+}
+
+model tasks {
+  id          Int            @id @default(autoincrement())
+  task_name   String         @db.VarChar(30)
+  description String?        @db.VarChar(60)
+  priority    tasks_priority
+  userId      Int
+  created_at  DateTime?      @db.DateTime(0)
+  updated_at  DateTime?      @db.DateTime(0)
+}
+
+enum tasks_priority {
+  low
+  high
+  medium
+}
