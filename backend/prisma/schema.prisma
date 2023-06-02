@@ -1,3 +1,12 @@
+// Este arquivo é utilizado pelo prisma para gerar o schema do banco de dados
+// Para gerar o schema, execute o comando: npx prisma generate
+// Para criar o banco de dados, execute o comando: npx prisma migrate dev --name init
+// Para criar uma nova migração, execute o comando: npx prisma migrate dev --name <nome da migração>
+// Para aplicar as migrações, execute o comando: npx prisma migrate dev
+// Para reverter as migrações, execute o comando: npx prisma migrate reset
+// Para reverter uma migração, execute o comando: npx prisma migrate reset --name <nome da migração>
+// Para criar um novo model, execute o comando: npx prisma migrate dev --name <nome da migração>
+
 generator client {
   provider = "prisma-client-js"
 }
