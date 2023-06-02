@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 .container {
   width: 100px;
@@ -162,7 +162,7 @@
   border: none;
   background-color: #672bde;
   color: rgb(255, 255, 255);
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 16px;
   cursor: pointer;
@@ -178,16 +178,16 @@
 }
 
 .modal > div > .texts {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .modal > div > .texts > h2 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   margin-bottom: 20px;
 }
 
 .modal > div > .texts > h3 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: rgb(118, 118, 118);
 }
 
@@ -214,7 +214,7 @@
 .priority-container > label {
   position: relative;
   display: inline-block;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 12px;
 }
@@ -224,7 +224,7 @@
 }
 
 .priority-container > select > option {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 700;
   font-size: 16px;
 }
@@ -234,7 +234,7 @@
 }
 
 .priority-container > select::after {
-  content: "";
+  content: '';
   width: 0.8em;
   height: 0.5em;
   background-color: var(--select-arrow);

@@ -1,17 +1,17 @@
-import "./bar.css";
-import { BsPersonCircle } from "react-icons/bs";
-import { AiOutlinePlusCircle, AiOutlineClose } from "react-icons/ai";
-import { CgLogOut } from "react-icons/cg";
-import { useState } from "react";
-import Modal from "react-modal";
+import './bar.css';
+import { BsPersonCircle } from 'react-icons/bs';
+import { AiOutlinePlusCircle, AiOutlineClose } from 'react-icons/ai';
+import { CgLogOut } from 'react-icons/cg';
+import { useState } from 'react';
+import Modal from 'react-modal';
 
 export const Navbar = () => {
   const [modal, setModal] = useState(false);
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState("low");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [priority, setPriority] = useState('low');
 
-  const currentCards = JSON.parse(localStorage.getItem("localCards"));
+  const currentCards = JSON.parse(localStorage.getItem('localCards'));
 
   const lastId = currentCards ? currentCards[currentCards.length - 1].id : 0;
 
@@ -27,9 +27,9 @@ export const Navbar = () => {
 
       currentCards.push(newTask);
 
-      localStorage.setItem("localCards", JSON.stringify(currentCards));
+      localStorage.setItem('localCards', JSON.stringify(currentCards));
 
-      alert("Task created successfully!");
+      alert('Task created successfully!');
 
       window.location.reload();
     } else {
@@ -43,9 +43,9 @@ export const Navbar = () => {
         },
       ];
 
-      localStorage.setItem("localCards", JSON.stringify(newTask));
+      localStorage.setItem('localCards', JSON.stringify(newTask));
 
-      alert("Task created successfully!");
+      alert('Task created successfully!');
 
       window.location.reload();
     }
@@ -73,7 +73,7 @@ export const Navbar = () => {
           <div>
             <div className="texts">
               <h2>Create a new task</h2>
-              <h3>Organize your day to save your time with small tasks</h3>{" "}
+              <h3>Organize your day to save your time with small tasks</h3>{' '}
             </div>
             <form>
               <input

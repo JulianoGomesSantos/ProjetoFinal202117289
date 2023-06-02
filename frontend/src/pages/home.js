@@ -1,16 +1,16 @@
-import { Navbar } from "../components/bar";
-import "../css/home.css";
-import { Card } from "../components/card";
+import { Navbar } from '../components/bar';
+import '../css/home.css';
+import { Card } from '../components/card';
 
 function Home() {
-  const cards = JSON.parse(localStorage.getItem("localCards")) || [];
+  const cards = JSON.parse(localStorage.getItem('localCards')) || [];
 
   return (
     <div className="App">
-      <Navbar />
       <div className="home">
-        <div className="home_container">
-          <div className="card_container">
+        <div className="home-container">
+          <Navbar />
+          <div className="card-container">
             <span>
               <p>Task List</p>
               <p>Priority</p>
@@ -26,6 +26,7 @@ function Home() {
               />
             ))}
           </div>
+          <div className="calendar-container"></div>
         </div>
       </div>
     </div>
