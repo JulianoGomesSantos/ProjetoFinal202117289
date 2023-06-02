@@ -1,14 +1,9 @@
-// import { updateTaskRepository } from '../../../database/repositories/task_db.js';
-// import Task from '../../entities/task.js';
+import { updateTaskRepository } from '../../../database/repositories/task_db.js';
 
-// const update = (params) => {
-//   const { taskName, description, userId, priority } = params;
+const update = (params) => {
+  const updatedTask = updateTaskRepository(params);
 
-//   const newTask = new Task({ taskName, description, userId, priority });
+  return updatedTask;
+};
 
-//   const createdTask = createTaskRepository(newTask);
-
-//   return createdTask;
-// };
-
-// export default create;
+export default update;

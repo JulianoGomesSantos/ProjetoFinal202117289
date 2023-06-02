@@ -8,8 +8,6 @@ const createTaskRepository = async (params) => {
   const { taskName, description, priority, userId, updatedAt, createdAt } =
     params;
 
-  console.log(params);
-
   const taskCreated = await prisma.task.create({
     data: {
       task_name: taskName,
@@ -24,6 +22,44 @@ const createTaskRepository = async (params) => {
   return taskCreated;
 };
 
+const updateTaskRepository = async (params) => {
+  const { taskId, taskName, description, priority } = params;
+
+  task = await getTaskRepository(taskId);
+
+  if (!task) {
+    return null;
+  }
+
+  const taskUpdated = await prisma.task.update({
+    where: {
+      id: parseInt(taskId),
+    },
+    data: {
+      task_name: taskName,
+      description: description,
+      priority: priority,
+      updated_at: new Date(),
+    },
+  });
+
+  return taskUpdated;
+};
+
+const getTaskRepository = async (taskId) => {
+  const task = await prisma.task.findUnique({
+    where: {
+      id: parseInt(taskId),
+    },
+  });
+
+  if (!task) {
+    return null;
+  }
+
+  return task;
+};
+
 const listTaskRepository = async (userId) => {
   const tasks = await prisma.task.findMany({
     where: {
@@ -34,4 +70,4 @@ const listTaskRepository = async (userId) => {
   return tasks;
 };
 
-export { createTaskRepository, listTaskRepository };
+export { createTaskRepository, listTaskRepository, updateTaskRepository };
