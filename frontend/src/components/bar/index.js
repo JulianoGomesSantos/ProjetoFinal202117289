@@ -2,7 +2,7 @@ import './bar.css';
 import { BsPersonCircle } from 'react-icons/bs';
 import { AiOutlinePlusCircle, AiOutlineClose } from 'react-icons/ai';
 import { CgLogOut } from 'react-icons/cg';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import api from '../../config/api';
 
@@ -57,7 +57,7 @@ export const Navbar = () => {
           <div>
             <div className="texts">
               <h2>Create a new task</h2>
-              <h3>Organize your day to save your time with small tasks</h3>{' '}
+              <h3>Organize your day to save your time with small tasks</h3>
             </div>
             <form>
               <input

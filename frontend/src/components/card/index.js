@@ -25,8 +25,8 @@ export const Card = (props) => {
   const [description, setDescription] = useState(props.description);
   const [priority, setPriority] = useState(props.priority);
 
-  const priorityColor = (priority) => {
-    if (priority === 'low') {
+  const priorityColor = () => {
+    if (props.priority === 'low') {
       return '#11e111';
     } else if (priority === 'medium') {
       return '#d2aa09';
@@ -36,11 +36,10 @@ export const Card = (props) => {
   };
 
   const cardStateColor = (state) => {
-    setCompleted(state);
-
     api
       .put('/task/update', { id: props.id, completed: state })
       .then(() => {
+        setCompleted(state);
         return;
       })
       .catch((err) => {
@@ -122,10 +121,7 @@ export const Card = (props) => {
         </div>
         <div className="card-priority">
           <div>
-            <RiCheckboxBlankCircleFill
-              size={'20px'}
-              color={priorityColor(props.priority)}
-            />
+            <RiCheckboxBlankCircleFill size={'20px'} color={priorityColor()} />
           </div>
         </div>
         <Modal
@@ -144,6 +140,7 @@ export const Card = (props) => {
             <BsFillTrash3Fill
               className="delete-card-modal-button"
               color="#672bde"
+              size={'20px'}
               onClick={() => deleteCard()}
             />
             <form>
