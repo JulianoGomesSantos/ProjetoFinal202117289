@@ -1,14 +1,14 @@
 // Este arquivo é responsável por fazer a comunicação com o banco de dados
 // para as operações de CRUD (Create, Read, Update, Delete) das tarefas.
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const createTaskRepository = async (params) => {
   const { taskName, description, priority, userId, updatedAt, createdAt } =
     params;
 
-  const taskCreated = await prisma.task.create({
+  const taskCreated = await prisma.tasks.create({
     data: {
       task_name: taskName,
       description: description,
@@ -31,7 +31,7 @@ const updateTaskRepository = async (params) => {
     return null;
   }
 
-  const taskUpdated = await prisma.task.update({
+  const taskUpdated = await prisma.tasks.update({
     where: {
       id: parseInt(id),
     },
@@ -47,7 +47,7 @@ const updateTaskRepository = async (params) => {
 };
 
 const getTaskRepository = async (taskId) => {
-  const task = await prisma.task.findUnique({
+  const task = await prisma.tasks.findUnique({
     where: {
       id: parseInt(taskId),
     },
@@ -61,7 +61,7 @@ const getTaskRepository = async (taskId) => {
 };
 
 const listTaskRepository = async (userId) => {
-  const tasks = await prisma.task.findMany({
+  const tasks = await prisma.tasks.findMany({
     where: {
       userId: parseInt(userId),
     },
