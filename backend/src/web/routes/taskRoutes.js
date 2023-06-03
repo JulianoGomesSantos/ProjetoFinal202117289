@@ -5,6 +5,8 @@ import {
   createTask,
   listTask,
   updateTask,
+  getTask,
+  deleteTask,
 } from '../controllers/taskController.js';
 const app = Router();
 
@@ -14,12 +16,8 @@ app.put('/task/update', updateTask);
 
 app.get('/task/list/:user_id', listTask);
 
-app.delete('/task/delete', function (req, res) {
-  res.send('Hello World!');
-});
+app.delete('/task/delete/:id', deleteTask);
 
-app.get('/task/get', function (req, res) {
-  res.send('Hello World!');
-});
+app.get('/task/get/:id', getTask);
 
 export default app;

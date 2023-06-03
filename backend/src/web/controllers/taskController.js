@@ -3,8 +3,9 @@
 
 import create from '../../domain/services/tasks/create.js';
 import list from '../../domain/services/tasks/list.js';
-import get from '../../domain/services/tasks/list.js';
+import get from '../../domain/services/tasks/get.js';
 import update from '../../domain/services/tasks/update.js';
+import remove from '../../domain/services/tasks/delete.js';
 
 const createTask = async (req, res) => {
   const task = await create(req.body);
@@ -19,7 +20,7 @@ const listTask = async (req, res) => {
 };
 
 const getTask = async (req, res) => {
-  const task = await list(req.params.user_id);
+  const task = await get(req.params.id);
   res.send(task);
 };
 
@@ -28,4 +29,9 @@ const updateTask = async (req, res) => {
   res.send(task);
 };
 
-export { createTask, listTask, updateTask };
+const deleteTask = async (req, res) => {
+  const task = await remove(req.params.id);
+  res.send(task);
+};
+
+export { createTask, listTask, updateTask, getTask, deleteTask };

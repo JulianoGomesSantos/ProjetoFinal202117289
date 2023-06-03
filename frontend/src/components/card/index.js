@@ -1,16 +1,20 @@
 import './card.css';
 
-import { BiCheckbox } from 'react-icons/bi';
 import {
   RiCheckboxCircleLine,
   RiCheckboxBlankCircleLine,
   RiCheckboxBlankCircleFill,
 } from 'react-icons/ri';
 
+import { RxHamburgerMenu } from 'react-icons/rx';
+
+import { BsFillTrash3Fill } from 'react-icons/bs';
+
 import Modal from 'react-modal';
 
 import { useState } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
+import api from '../../config/api';
 
 export const Card = (props) => {
   const [completed, setCompleted] = useState(props.completed);
@@ -33,23 +37,56 @@ export const Card = (props) => {
 
   const cardStateColor = (state) => {
     setCompleted(state);
-    const cards = JSON.parse(localStorage.getItem('localCards'));
-    var cardIndex = cards.findIndex((card) => card.id === props.id);
 
-    cards[cardIndex].completed = state;
+    api
+      .put('/task/update', { id: props.id, completed: state })
+      .then(() => {
+        return;
+      })
+      .catch((err) => {
+        console.error('ops! ocorreu um erro' + err);
+        alert(err);
 
-    localStorage.setItem('localCards', JSON.stringify(cards));
+        return err;
+      });
   };
 
   const updateCard = () => {
-    const cards = JSON.parse(localStorage.getItem('localCards'));
-    var cardIndex = cards.findIndex((card) => card.id === props.id);
+    api
+      .put('/task/update', {
+        id: props.id,
+        taskName: task,
+        description: description,
+        priority: priority,
+      })
+      .then(() => {
+        window.location.reload();
 
-    cards[cardIndex].task = task;
-    cards[cardIndex].description = description;
-    cards[cardIndex].priority = priority;
+        return;
+      })
+      .catch((err) => {
+        console.error('ops! ocorreu um erro' + err);
+        alert(err);
 
-    localStorage.setItem('localCards', JSON.stringify(cards));
+        return err;
+      });
+  };
+
+  const deleteCard = () => {
+    api
+      .delete(`/task/delete/${props.id}`)
+      .then(() => {
+        alert('Task deleted sucessfully');
+        window.location.reload();
+
+        setModal(false);
+      })
+      .catch((err) => {
+        console.error('ops! ocorreu um erro' + err);
+        alert(err);
+
+        return err;
+      });
   };
 
   if (modal) {
@@ -77,6 +114,12 @@ export const Card = (props) => {
         <div className="card-title">
           <h2>{props.task}</h2>
         </div>
+        <div className="card-options">
+          <RxHamburgerMenu
+            size={'20px'}
+            color={priorityColor(props.priority)}
+          />
+        </div>
         <div className="card-priority">
           <div>
             <RiCheckboxBlankCircleFill
@@ -97,6 +140,11 @@ export const Card = (props) => {
               className="close-card-modal-button"
               color="#672bde"
               onClick={() => setModal(false)}
+            />
+            <BsFillTrash3Fill
+              className="delete-card-modal-button"
+              color="#672bde"
+              onClick={() => deleteCard()}
             />
             <form>
               <div className="card-modal-input-container">
@@ -131,7 +179,7 @@ export const Card = (props) => {
                 </select>
               </div>
               <button type="submit" onClick={() => updateCard()}>
-                Create task
+                Update task
               </button>
             </form>
           </div>
@@ -141,7 +189,7 @@ export const Card = (props) => {
   }
 
   return (
-    <div className="card" onClick={() => setModal(true)}>
+    <div className="card">
       <div className="card-checkbox">
         {completed ? (
           <div>
@@ -164,6 +212,14 @@ export const Card = (props) => {
       <div className="card-title">
         <h2>{props.task}</h2>
       </div>
+      <div className="card-options">
+        <RxHamburgerMenu
+          size={'20px'}
+          color="#672bde"
+          className="card-options-circle"
+          onClick={() => setModal(true)}
+        />
+      </div>
       <div className="card-priority">
         <div>
           <RiCheckboxBlankCircleFill
@@ -172,9 +228,6 @@ export const Card = (props) => {
           />
         </div>
       </div>
-      {/* <div className="card-description">
-        <h3>{props.description}</h3>
-      </div> */}
     </div>
   );
 };

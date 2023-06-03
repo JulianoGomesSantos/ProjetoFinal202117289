@@ -17,8 +17,6 @@
 
 .card:hover {
   transition: 0.2s;
-  background-color: #f9f9f9;
-  cursor: pointer;
 
   border-bottom: 2px solid #672bde;
 }
@@ -231,7 +229,36 @@ select:focus + .focus {
   cursor: pointer;
 }
 
+.delete-card-modal-button {
+  position: inherit;
+  top: 10px;
+  left: 20px;
+  margin: 10px;
+  font-size: 2rem;
+  color: #672bde;
+  cursor: pointer;
+}
+
 .close-card-modal-button:hover {
   transition: all 0.2s ease-in-out;
   color: #672bde;
+}
+
+.card-options-circle:hover {
+  transition: all 0.2s ease-in-out;
+  color: #4b1aac;
+  cursor: pointer;
+}
+
+.card-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+  height: 100%;
+}
+
+.card-options:hover {
+  font-size: 1.5rem;
+  color: #1e0650;
 }

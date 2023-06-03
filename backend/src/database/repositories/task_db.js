@@ -23,9 +23,9 @@ const createTaskRepository = async (params) => {
 };
 
 const updateTaskRepository = async (params) => {
-  const { taskId, taskName, description, priority } = params;
+  const { id, taskName, description, priority } = params;
 
-  task = await getTaskRepository(taskId);
+  const task = await getTaskRepository(id);
 
   if (!task) {
     return null;
@@ -33,7 +33,7 @@ const updateTaskRepository = async (params) => {
 
   const taskUpdated = await prisma.task.update({
     where: {
-      id: parseInt(taskId),
+      id: parseInt(id),
     },
     data: {
       task_name: taskName,
@@ -70,4 +70,26 @@ const listTaskRepository = async (userId) => {
   return tasks;
 };
 
-export { createTaskRepository, listTaskRepository, updateTaskRepository };
+const deleteTaskRepository = async (id) => {
+  const task = await getTaskRepository(id);
+
+  if (!task) {
+    return null;
+  }
+
+  const tasks = await prisma.task.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+
+  return tasks;
+};
+
+export {
+  createTaskRepository,
+  listTaskRepository,
+  updateTaskRepository,
+  getTaskRepository,
+  deleteTaskRepository,
+};
