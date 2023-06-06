@@ -1,5 +1,3 @@
-// Este é o arquivo de rotas
-
 import Router from 'express';
 import {
   createTask,
