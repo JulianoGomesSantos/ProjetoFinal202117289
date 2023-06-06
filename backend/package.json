@@ -25,6 +25,7 @@
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.0",
     "sequelize": "^6.32.0"
   }
 }

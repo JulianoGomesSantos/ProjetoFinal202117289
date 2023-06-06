@@ -15,7 +15,7 @@ const createUserRepository = async (params) => {
     updatedAt,
   } = params;
 
-  const taskCreated = await prisma.users.create({
+  const userCreated = await prisma.users.create({
     data: {
       name,
       profile_image,
@@ -27,37 +27,42 @@ const createUserRepository = async (params) => {
     },
   });
 
-  return taskCreated;
+  return userCreated;
 };
 
-const getUserRepository = async ({ userId, username, email }) => {
-  if (userId) {
-    const user = await prisma.users.findUnique({
-      where: {
-        id: userId,
-      },
-    });
+const getUserByIdRepository = async ({ userId }) => {
+  const user = await prisma.users.findUnique({
+    where: {
+      id: userId,
+    },
+  });
 
-    return user;
-  }
-
-  if (username) {
-    const user = await prisma.users.findUnique({
-      where: {
-        username: username,
-      },
-    });
-    return user;
-  }
-
-  if (email) {
-    const user = await prisma.users.findUnique({
-      where: {
-        email: email,
-      },
-    });
-    return user;
-  }
+  return user;
 };
 
-export { createUserRepository, getUserRepository };
+const getUserByUsernameRepository = async ({ username }) => {
+  const user = await prisma.users.findUnique({
+    where: {
+      username: username,
+    },
+  });
+
+  return user;
+};
+
+const getUserByEmailRepository = async ({ email }) => {
+  const user = await prisma.users.findUnique({
+    where: {
+      email: email,
+    },
+  });
+
+  return user;
+};
+
+export {
+  createUserRepository,
+  getUserByIdRepository,
+  getUserByUsernameRepository,
+  getUserByEmailRepository,
+};

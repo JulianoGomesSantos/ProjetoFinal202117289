@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
-import { getUserRepository } from '../../../database/repositories/user_db.js';
+import getService from './get.js';
 
 const loginService = async (params) => {
-  const user = await getUserRepository(params);
+  const user = await getService(params);
 
   if (!user) {
     return 'Not found';
@@ -14,7 +14,9 @@ const loginService = async (params) => {
     return null;
   }
 
-  return user;
+  const { id, email, name, username, profile_image } = user;
+
+  return { id, email, name, username, profile_image };
 };
 
 export default loginService;

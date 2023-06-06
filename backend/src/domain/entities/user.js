@@ -5,6 +5,7 @@ export default class User {
     this.password = password;
     this.username = username;
     this.email = email;
+    this.token = '';
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }

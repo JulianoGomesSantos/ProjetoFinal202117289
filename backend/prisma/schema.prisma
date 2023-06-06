@@ -12,12 +12,10 @@ model tasks {
   task_name   String         @db.VarChar(30)
   description String?        @db.VarChar(60)
   priority    tasks_priority
+  completed   Boolean?
   userId      Int            @db.SmallInt
   created_at  DateTime?      @db.DateTime(0)
   updated_at  DateTime?      @db.DateTime(0)
-  users       users          @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tasks_ibfk_1")
-
-  @@index([userId], map: "userId")
 }
 
 model users {
@@ -29,7 +27,6 @@ model users {
   username      String    @unique(map: "username") @db.VarChar(30)
   created_at    DateTime? @db.DateTime(0)
   updated_at    DateTime? @db.DateTime(0)
-  tasks         tasks[]
 }
 
 enum tasks_priority {
