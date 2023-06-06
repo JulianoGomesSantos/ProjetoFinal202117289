@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:my-secret-pw@localhost:3307/mydatabase"
+  url      = "mysql://root:my-secret-pw@localhost:3306/agendamento_tarefas"
 }
 
 model tasks {
@@ -15,6 +15,21 @@ model tasks {
   userId      Int            @db.SmallInt
   created_at  DateTime?      @db.DateTime(0)
   updated_at  DateTime?      @db.DateTime(0)
+  users       users          @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "tasks_ibfk_1")
+
+  @@index([userId], map: "userId")
+}
+
+model users {
+  id            Int       @id @default(autoincrement()) @db.SmallInt
+  name          String    @db.VarChar(40)
+  profile_image String?   @db.VarChar(255)
+  password      String    @db.VarChar(255)
+  email         String    @unique(map: "email") @db.VarChar(30)
+  username      String    @unique(map: "username") @db.VarChar(30)
+  created_at    DateTime? @db.DateTime(0)
+  updated_at    DateTime? @db.DateTime(0)
+  tasks         tasks[]
 }
 
 enum tasks_priority {
