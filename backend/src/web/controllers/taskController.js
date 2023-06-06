@@ -15,7 +15,7 @@ const createTask = async (req, res) => {
 };
 
 const listTask = async (req, res) => {
-  const tasks = await list(req.params.user_id);
+  const tasks = await list(req.query);
   res.send(tasks);
 };
 

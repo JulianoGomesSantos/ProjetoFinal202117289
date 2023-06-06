@@ -14,7 +14,7 @@ app.post('/task/create', createTask);
 
 app.put('/task/update', updateTask);
 
-app.get('/task/list/:user_id', listTask);
+app.get('/task/list', listTask);
 
 app.delete('/task/delete/:id', deleteTask);
 

@@ -1,7 +1,7 @@
 // Este arquivo é responsável por fazer a comunicação com o banco de dados
 // para as operações de CRUD (Create, Read, Update, Delete) das tarefas.
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 const createTaskRepository = async (params) => {
@@ -16,6 +16,7 @@ const createTaskRepository = async (params) => {
       priority: priority,
       updated_at: updatedAt,
       created_at: createdAt,
+      completed: false,
     },
   });
 
@@ -23,7 +24,7 @@ const createTaskRepository = async (params) => {
 };
 
 const updateTaskRepository = async (params) => {
-  const { id, taskName, description, priority } = params;
+  const { id, taskName, description, priority, completed } = params;
 
   const task = await getTaskRepository(id);
 
@@ -40,6 +41,7 @@ const updateTaskRepository = async (params) => {
       description: description,
       priority: priority,
       updated_at: new Date(),
+      completed: completed,
     },
   });
 
@@ -60,10 +62,21 @@ const getTaskRepository = async (taskId) => {
   return task;
 };
 
-const listTaskRepository = async (userId) => {
+const listTaskRepository = async ({ userId, completed }) => {
+  const dynamicCompleted = completed === 'true' ? undefined : false;
+
   const tasks = await prisma.tasks.findMany({
     where: {
       userId: parseInt(userId),
+    },
+    where: {
+      completed: dynamicCompleted,
+    },
+    orderBy: {
+      priority: 'desc',
+    },
+    orderBy: {
+      completed: 'asc',
     },
   });
 
@@ -77,7 +90,7 @@ const deleteTaskRepository = async (id) => {
     return null;
   }
 
-  const tasks = await prisma.task.delete({
+  const tasks = await prisma.tasks.delete({
     where: {
       id: parseInt(id),
     },

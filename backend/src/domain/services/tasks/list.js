@@ -2,7 +2,6 @@
 // Ele lista as tarefas de um usuário.
 
 import { listTaskRepository } from '../../../database/repositories/task_db.js';
-import Task from '../../entities/task.js';
 
 const list = async (userId) => {
   const tasks = await listTaskRepository(userId);

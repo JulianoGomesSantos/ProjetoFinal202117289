@@ -42,9 +42,39 @@ body {
 
 .card-container > span {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px 10px;
+  grid-template-areas:
+    '. . checkbox-button-container'
+    'task-header-container . priority-header-container';
   color: #672bde;
   font: 700 1.5rem 'Roboto', sans-serif;
+}
+
+.card-container > span > div {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-area: task-header-container;
+  grid-area: checkbox-button-container;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+
+.card-container > span > h3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-area: task-header-container;
+}
+.card-container > span > p {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-area: priority-header-container;
 }

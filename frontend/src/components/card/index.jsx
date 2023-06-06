@@ -94,19 +94,23 @@ export const Card = (props) => {
         <div className="card-checkbox">
           {completed ? (
             <div>
-              <RiCheckboxCircleLine
-                size={'32px'}
-                color="#672bde"
-                onClick={() => cardStateColor(false)}
-              />
+              <span>
+                <RiCheckboxCircleLine
+                  size={'32px'}
+                  color="#672bde"
+                  onClick={() => cardStateColor(false)}
+                />
+              </span>
             </div>
           ) : (
             <div>
-              <RiCheckboxBlankCircleLine
-                size={'32px'}
-                color="#672bde"
-                onClick={() => cardStateColor(true)}
-              />
+              <span>
+                <RiCheckboxBlankCircleLine
+                  size={'32px'}
+                  color="#672bde"
+                  onClick={() => cardStateColor(true)}
+                />
+              </span>
             </div>
           )}
         </div>

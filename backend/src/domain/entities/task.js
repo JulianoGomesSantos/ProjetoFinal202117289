@@ -11,5 +11,6 @@ export default class Task {
     this.createdAt = new Date();
     this.updatedAt = new Date();
     this.userId = userId;
+    this.completed = false;
   }
 }
