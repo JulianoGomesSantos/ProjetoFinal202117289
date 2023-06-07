@@ -11,14 +11,14 @@ import {
 } from '../controllers/taskController.js';
 const app = Router();
 
-app.post('/task/create', auth, createTask);
+app.post('/task/create', createTask);
 
-app.put('/task/update', auth, updateTask);
+app.put('/task/update', updateTask);
 
-app.get('/task/list', auth, listTask);
+app.get('/task/list', listTask);
 
-app.delete('/task/delete/:id', auth, deleteTask);
+app.delete('/task/delete/:id', deleteTask);
 
-app.get('/task/get/:id', auth, getTask);
+app.get('/task/get/:id', getTask);
 
 export default app;

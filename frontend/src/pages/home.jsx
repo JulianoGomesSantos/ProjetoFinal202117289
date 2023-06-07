@@ -1,78 +1,37 @@
-import { Navbar } from '../components/bar';
-import '../css/home.css';
-import { Card } from '../components/card';
-import api from '../config/api';
-import { useEffect, useState } from 'react';
-import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
+import '../css/landing.css';
+import { useNavigate } from 'react-router-dom';
 
-function Home() {
-  const getCurrentCompletedState = () => {
-    if (localStorage.getItem('completedState')) {
-      return true;
-    }
+export const Home = () => {
+  const navigate = useNavigate();
 
-    return false;
-  };
+  function handleRegister() {
+    navigate('/register');
+  }
 
-  const [cardList, setCardList] = useState([]);
-  const [completed, setCompleted] = useState(getCurrentCompletedState());
-
-  useEffect(() => {
-    api
-      .get('/task/list', { params: { userId: 1, completed: completed } })
-      .then((res) => {
-        setCardList(res.data);
-      });
-  }, [completed]);
-
-  const saveCompletedState = (params) => {
-    localStorage.setItem('completedState', params);
-    setCompleted(params);
-    return;
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
-    <div className="App">
-      <div className="home">
-        <div className="home-container">
-          <Navbar />
-          <div className="card-container">
-            <span>
-              <div>
-                {completed ? (
-                  <MdCheckBox
-                    size={'32px'}
-                    color="#672bde"
-                    onClick={() => saveCompletedState(false)}
-                  />
-                ) : (
-                  <MdCheckBoxOutlineBlank
-                    size={'32px'}
-                    color="#672bde"
-                    onClick={() => saveCompletedState(true)}
-                  />
-                )}
-                <h4>List completed tasks?</h4>
-              </div>
-              <h3>Task List</h3>
-              <p>Priority</p>
-            </span>
-            {cardList.map((item) => (
-              <Card
-                key={item.id}
-                id={item.id}
-                task={item.task_name}
-                description={item.description}
-                completed={item.completed}
-                priority={item.priority}
-              />
-            ))}
+    <div className="landing">
+      <div className="landing-container">
+        <div className="landing-text-container">
+          <span className="make-span">MAKE</span>
+          <span className="day-span">YOUR DAY</span>
+          <>
+            <p className="productive-p">
+              <span className="more-span">MORE</span> PRODUCTIVE
+            </p>
+          </>
+          <div className="login-button" onClick={() => handleLogin()}>
+            LOGIN
           </div>
-          <div className="calendar-container"></div>
+          <div className="create-button" onClick={() => handleRegister()}>
+            CREATE ACCOUNT
+          </div>
         </div>
       </div>
+      <div className="landing-bar-container" />
     </div>
   );
-}
-
-export default Home;
+};

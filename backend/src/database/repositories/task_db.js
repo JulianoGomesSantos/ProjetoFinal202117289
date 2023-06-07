@@ -1,6 +1,3 @@
-// Este arquivo é responsável por fazer a comunicação com o banco de dados
-// para as operações de CRUD (Create, Read, Update, Delete) das tarefas.
-
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
