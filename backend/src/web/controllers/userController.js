@@ -54,4 +54,14 @@ const login = async (req, res) => {
   return res.status(400).send({ message: 'Invalid login or password' });
 };
 
-export { createUser, login };
+const getUser = async (req, res) => {
+  const user = await getService(req.body);
+
+  if (user) {
+    return res.send(user);
+  }
+
+  return res.status(404).send({ message: 'User not found' });
+};
+
+export { createUser, login, getUser };

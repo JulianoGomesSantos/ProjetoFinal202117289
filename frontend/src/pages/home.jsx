@@ -24,10 +24,10 @@ export const Home = () => {
             </p>
           </>
           <div className="login-button" onClick={() => handleLogin()}>
-            LOGIN
+            Sign In
           </div>
           <div className="create-button" onClick={() => handleRegister()}>
-            CREATE ACCOUNT
+            Sign Up
           </div>
         </div>
       </div>

@@ -1,0 +1,139 @@
+.register-container {
+  width: 70%;
+  height: 80%;
+}
+
+.register-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: center;
+  height: 80%;
+  width: 60%;
+  border-radius: 19px;
+
+  background: #f5f5f5;
+}
+
+.banana {
+  width: 100%;
+  height: 100%;
+}
+
+.register-left-container {
+  width: 100%;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.register-inputs-container {
+  width: 80%;
+
+  height: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.landing-bar-container-animated {
+  position: absolute;
+
+  background-color: rgb(103, 43, 222);
+  width: 15%;
+  left: 25%;
+
+  height: 82%;
+
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.232);
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+.register-dual-input-container {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+.register-dual-input-container > label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.register-inputs-container > * {
+  font: 400 0.8rem/1.2 'Roboto', sans-serif;
+  color: #6735c8;
+}
+
+.register-inputs-container > h1 {
+  font: 600 3.5rem/1.2 'Roboto', sans-serif;
+  color: #6735c8;
+}
+.register-inputs-container > h1:hover {
+  transition: 0.1s;
+  transform: scale(1.1);
+
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  cursor: pointer;
+}
+
+.register-dual-input-container > label > input,
+.password-icon > input {
+  background: none;
+  border: none;
+  border-bottom: 2px solid #424242;
+  outline: none;
+  width: 200px;
+  height: 30px;
+  color: #424242;
+}
+
+.register-dual-input-container > label > input:focus,
+.password-icon > input:focus {
+  transition: 0.1s;
+  transform: scale(1.1);
+
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  border-bottom: 3px solid #6735c8;
+}
+
+.account-button {
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  background: #6735c8;
+  border: none;
+  outline: none;
+  color: #f5f5f5;
+  font: 600 1.2rem/1.2 'Roboto', sans-serif;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-button:hover {
+  transition: 0.1s;
+  transform: scale(1.1);
+
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(36vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

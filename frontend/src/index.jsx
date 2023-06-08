@@ -4,6 +4,7 @@ import TaskHome from './pages/taskHome';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Home } from './pages/home';
 import { Register } from './pages/register';
+import { Login } from './pages/login';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/login',
-    element: <div>Login</div>,
+    element: <Login />,
   },
   {
     path: '/register',
