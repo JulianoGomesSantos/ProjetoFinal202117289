@@ -37,7 +37,15 @@ export const Card = (props) => {
 
   const cardStateColor = (state) => {
     api
-      .put('/task/update', { id: props.id, completed: state })
+      .put(
+        '/task/update',
+        { id: props.id, completed: state },
+        {
+          headers: {
+            'x-access-token': localStorage.getItem('token'),
+          },
+        }
+      )
       .then(() => {
         setCompleted(state);
         return;
@@ -52,12 +60,20 @@ export const Card = (props) => {
 
   const updateCard = () => {
     api
-      .put('/task/update', {
-        id: props.id,
-        taskName: task,
-        description: description,
-        priority: priority,
-      })
+      .put(
+        '/task/update',
+        {
+          id: props.id,
+          taskName: task,
+          description: description,
+          priority: priority,
+        },
+        {
+          headers: {
+            'x-access-token': localStorage.getItem('token'),
+          },
+        }
+      )
       .then(() => {
         window.location.reload();
 
@@ -73,7 +89,11 @@ export const Card = (props) => {
 
   const deleteCard = () => {
     api
-      .delete(`/task/delete/${props.id}`)
+      .delete(`/task/delete/${props.id}`, {
+        headers: {
+          'x-access-token': localStorage.getItem('token'),
+        },
+      })
       .then(() => {
         alert('Task deleted sucessfully');
         window.location.reload();

@@ -33,6 +33,14 @@ body {
   padding-top: 40px;
   border-radius: 4px;
 }
+
+.header-card-container {
+  color: #672bde;
+  font: 700 1.5rem 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 .card-container::-webkit-scrollbar {
   display: none;
 }

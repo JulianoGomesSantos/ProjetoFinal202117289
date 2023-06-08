@@ -12,6 +12,10 @@ export const Home = () => {
     navigate('/login');
   };
 
+  if (localStorage.getItem('token')) {
+    navigate('/tasks');
+  }
+
   return (
     <div className="landing">
       <div className="landing-container">

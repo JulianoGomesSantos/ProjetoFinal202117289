@@ -65,8 +65,6 @@ const listTaskRepository = async ({ userId, completed }) => {
   const tasks = await prisma.tasks.findMany({
     where: {
       userId: parseInt(userId),
-    },
-    where: {
       completed: dynamicCompleted,
     },
     orderBy: {

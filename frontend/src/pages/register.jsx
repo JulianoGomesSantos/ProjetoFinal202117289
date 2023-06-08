@@ -168,7 +168,6 @@ export const Register = () => {
           alert('Account created successfully');
           navigate('/login');
         } else {
-          console.log(res.data);
           alert(res.data);
         }
       });

@@ -1,0 +1,66 @@
+.login-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  justify-content: center;
+  height: 80%;
+  width: 60%;
+  border-radius: 19px;
+
+  background: #f5f5f5;
+}
+
+.login-right-container {
+  width: 50%;
+  margin-right: 10%;
+
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  font-family: 'Roboto', sans-serif;
+}
+
+.login-inputs-container > h1 {
+  margin-bottom: 30px;
+}
+
+.login-inputs-container {
+  width: 80%;
+
+  height: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.dont-have-account-button {
+  width: 80%;
+  height: 50px;
+  border-radius: 10px;
+  border: 2px solid #6735c8;
+  background: white;
+  color: #6735c8;
+  margin-top: 30px;
+
+  outline: none;
+
+  font: 600 1.2rem/1.2 'Roboto', sans-serif;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dont-have-account-button:hover {
+  transition: 0.3s;
+  color: white;
+  background: #6735c8;
+  transform: scale(1.1);
+
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}

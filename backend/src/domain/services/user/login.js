@@ -8,7 +8,7 @@ const loginService = async (params) => {
     return 'Not found';
   }
 
-  const isValid = bcrypt.compare(params.password, user.password);
+  const isValid = await bcrypt.compare(params.password, user.password);
 
   if (!isValid) {
     return null;

@@ -5,24 +5,40 @@ import { CgLogOut } from 'react-icons/cg';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import api from '../../config/api';
+import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState('low');
+
+  const { id } = JSON.parse(localStorage.getItem('user')) || { id: 0 };
+  const token = localStorage.getItem('token');
 
   const newCard = {
     taskName: name,
     completed: false,
     description: description,
     priority: priority,
-    userId: 1,
+    userId: id,
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    navigate('/');
   };
 
   function insertCards() {
     api
-      .post('/task/create', newCard)
+      .post('/task/create', newCard, {
+        headers: {
+          'x-access-token': token,
+        },
+      })
       .then(() => {
         alert('Task created successfully!');
         return;
@@ -35,11 +51,30 @@ export const Navbar = () => {
       });
   }
 
+  function hasImage() {
+    if (localStorage.getItem('user')) {
+      const { profile_image } = JSON.parse(localStorage.getItem('user'));
+
+      return profile_image;
+    }
+
+    return null;
+  }
+
+  const image = hasImage();
+
   if (modal) {
     return (
       <div>
         <div className="container">
-          <BsPersonCircle className="person-icon" />
+          {image ? (
+            <div
+              style={{ backgroundImage: `url(${image})` }}
+              className="person-icon-div"
+            />
+          ) : (
+            <BsPersonCircle className="person-icon" />
+          )}
           <AiOutlineClose
             className="plus-circle-icon"
             color="white"
@@ -99,12 +134,19 @@ export const Navbar = () => {
 
   return (
     <div className="container">
-      <BsPersonCircle className="person-icon" />
+      {image ? (
+        <div
+          style={{ backgroundImage: `url(${image})` }}
+          className="person-icon-div"
+        />
+      ) : (
+        <BsPersonCircle className="person-icon" />
+      )}
       <AiOutlinePlusCircle
         className="plus-circle-icon"
         onClick={() => setModal(true)}
       />
-      <CgLogOut className="log-out-icon" />
+      <CgLogOut className="log-out-icon" onClick={() => handleLogout()} />
     </div>
   );
 };

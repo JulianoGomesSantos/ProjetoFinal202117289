@@ -1,6 +1,7 @@
 import create from '../../domain/services/user/create.js';
 import getService from '../../domain/services/user/get.js';
 import loginService from '../../domain/services/user/login.js';
+import hasTasks from '../../domain/services/user/hasTasks.js';
 import jwt from 'jsonwebtoken';
 
 const createUser = async (req, res) => {
@@ -64,4 +65,16 @@ const getUser = async (req, res) => {
   return res.status(404).send({ message: 'User not found' });
 };
 
-export { createUser, login, getUser };
+const userHasTasks = async (req, res) => {
+  const user = await getService(req.params.id);
+
+  if (user == 'Not found') {
+    return res.status(404).send({ message: 'User not found' });
+  }
+
+  const status = await hasTasks(req.params.id);
+
+  return res.send({ status: status });
+};
+
+export { createUser, login, getUser, userHasTasks };
