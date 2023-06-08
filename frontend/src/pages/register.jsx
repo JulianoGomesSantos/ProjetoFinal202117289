@@ -173,6 +173,10 @@ export const Register = () => {
       });
   };
 
+  const haveAccount = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="landing">
       <div className="register-container">
@@ -180,15 +184,18 @@ export const Register = () => {
         {showReturn && (
           <div className="register-left-container">
             <div className="register-inputs-container">
-              <h1
-                onClick={() =>
-                  window.location.replace(
-                    'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-                  )
-                }
-              >
-                Sign Up
-              </h1>
+              <div className="have-account">
+                <h1
+                  onClick={() =>
+                    window.location.replace(
+                      'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+                    )
+                  }
+                >
+                  Sign Up
+                </h1>
+                <h4 onClick={() => haveAccount()}>Have account?</h4>
+              </div>
               <div className="register-dual-input-container">
                 <label>
                   Your name
